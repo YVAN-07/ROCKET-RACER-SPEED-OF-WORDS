@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Game with Space Particles</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Orbitron';
+      src: url('fonts/Orbitron-Regular.woff2') format('woff2'),
+           url('fonts/Orbitron-Regular.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: #fff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+    }
+
+    .top-half {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to top, #00aaff, #0044ff, #001f8d);
+    }
+
+    .bottom-half {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background-color: black;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .finish-line {
+      position: absolute;
+      left: 5px;
+      bottom: 0;
+      width: 96px;
+      height: 100%;
+      background-color: green;
+    }
+
+    .spaceship {
+      position: absolute;
+      bottom: 5%; /* Start just above the finish line */
+      width: 80px;
+      height: 80px;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.1s ease-in-out;
+    }
+
+   
+
+    .spaceship-label {
+      position: absolute;
+      top: -20px; /* Adjust this value to move the label higher or lower */
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #00eaff;
+      text-shadow: 0 0 10px #00eaff;
+    }
+
+    #player-label {
+      top: -40px; /* Slightly higher label for player ship */
+    }
+
+    #enemy-label {
+      top: -40px; /* Slightly higher label for enemy ship */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-half">
+      <h1>ROCKET RACER: SPEED OF WORDS</h1>
+      <h9>---WIN THE RACE BY TYPING---</h9>
+      <div class="timer">Time: <span id="timer">0</span>s</div>
+      <div class="sentence" id="sentence">Press Start to begin!</div>
+      <div class="stats" id="stats" style="display: none;">
+        Words per Minute: <span id="wpm">0</span>
+      </div>
+      <input type="text" class="input" id="input" placeholder="Start typing here..." disabled>
+      <button class="button" id="startButton">Start</button>
+      <button class="button" id="replayButton" style="display: none;">Play Again</button>
+    </div>
+    <div class="bottom-half" id="particles-container">
+      <div class="spaceship" id="player-ship"></div>
+      <div class="spaceship-label" id="player-label">Player Ship</div> <!-- Player label -->
+      
+      <div class="spaceship enemy" id="enemy-ship"></div>
+      <div class="spaceship-label" id="enemy-label">Enemy Ship</div> <!-- Enemy label -->
+      
+      <div id="finish-line" class="finish-line"></div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
